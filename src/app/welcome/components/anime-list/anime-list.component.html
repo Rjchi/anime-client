@@ -1,1 +1,5 @@
-<p>anime-list works!</p>
+<div>
+  <ul *ngFor="let anime of Animes">
+    <app-anime-card [anime]="anime"></app-anime-card>
+  </ul>
+</div>
