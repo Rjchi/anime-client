@@ -5,9 +5,7 @@
     </div>
   </div>
   <div *ngIf="Animes && Animes.length === 0">
-    <div class="spinner-border text-info" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <app-spinner></app-spinner>
   </div>
 </div>
 <div *ngIf="Animes && Animes.length > 0" class="d-flex flex-wrap justify-content-center align-items-center gap-2">
