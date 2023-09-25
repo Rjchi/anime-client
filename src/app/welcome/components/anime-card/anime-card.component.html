@@ -1,3 +1,11 @@
-<div>
-  {{ anime | json }}
+<div *ngIf="anime" class="card border-secondary mb-3 h-auto w-auto cursor-pointer">
+  <img src="{{anime.img}}" alt="Anime image" width="40px" height="250px" class="w-auto rounded-2">
+  <div class="d-flex flex-wrap align-items-center justify-content-center">
+    <p class="text-center text-white">
+      {{anime.name}}
+    </p>
+  </div>
+  <div class="d-flex flex-wrap m-2">
+    <span class="badge rounded-pill bg-dark card border-dark">{{ anime.dubbing }}</span>
+  </div>
 </div>
