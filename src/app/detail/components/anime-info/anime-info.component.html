@@ -1,0 +1,25 @@
+<div *ngIf="animeDetails" class="container-fluid">
+  <!-- <img src="" alt=""> -->
+  <h2>{{ animeDetails.name }}</h2>
+  <p>{{ animeDetails.description}}</p>
+  <div>
+    <h3>Datos</h3>
+    <p>
+      <span *ngFor="let data of animeDetails.information">
+        {{data}}
+      </span>
+    </p>
+  </div>
+  <div>
+    <h3>Generos</h3>
+    <p>
+      <span *ngFor="let gen of animeDetails.genres">
+        {{gen}}
+      </span>
+    </p>
+  </div>
+  <div>
+    episodios
+  </div>
+
+</div>

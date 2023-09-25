@@ -1,4 +1,4 @@
-<div *ngIf="anime" class="card border-secondary mb-3 h-auto w-auto cursor-pointer">
+<div *ngIf="anime" class="card border-secondary mb-3 h-auto w-auto cursor-pointer" (click)="navigate(anime.name)">
   <img src="{{anime.img}}" alt="Anime image" width="40px" height="250px" class="w-auto rounded-2">
   <div class="d-flex flex-wrap align-items-center justify-content-center">
     <p class="text-center text-white">

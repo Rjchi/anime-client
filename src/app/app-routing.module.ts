@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./welcome/welcome.module').then((m) => m.WelcomeModule),
   },
+  {
+    path: 'anime/detail',
+    loadChildren: () =>
+      import('./detail/detail.module').then((m) => m.DetailModule),
+  },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 

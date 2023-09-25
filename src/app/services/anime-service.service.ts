@@ -23,4 +23,11 @@ export class AnimeServiceService {
   getListAnimes(page: number) {
     return this.http.get(`${this.ApiUrl}/animes/${page}`);
   }
+
+  /**---------------------------------------
+   * | Obtenemos el detalle de un anime
+   *---------------------------------------*/
+  getAnimeDetails(anime: string) {
+    return this.http.get(this.ApiUrl + `/details/` + anime);
+  }
 }
