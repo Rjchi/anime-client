@@ -1,0 +1,4 @@
+export const environmentExample = {
+  production: true,
+  enpoint: 'https://api.example.com'
+};

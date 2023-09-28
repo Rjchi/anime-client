@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,7 +13,7 @@ export class AnimeServiceService {
   private ApiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.ApiUrl = environment.apiUrl;
+    this.ApiUrl = environment.enpoint;
   }
 
   /**-------------------------------------------------
