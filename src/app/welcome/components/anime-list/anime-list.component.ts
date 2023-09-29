@@ -24,6 +24,7 @@ export class AnimeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.getListAnimes(this.page);
   }
 
@@ -43,6 +44,7 @@ export class AnimeListComponent implements OnInit {
   }
 
   get Animes() {
+    window.scroll(0, 0);
     if (this.listAnimes !== undefined && this.listAnimes.length !== 0) {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
