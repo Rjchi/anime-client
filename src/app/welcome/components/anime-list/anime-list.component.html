@@ -8,16 +8,16 @@
     <app-spinner></app-spinner>
   </div>
 </div>
-<div *ngIf="Animes && Animes.length > 0" class="d-flex flex-wrap justify-content-center align-items-center gap-2">
-  <button type="button" (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-outline-info">
+<div *ngIf="Animes && Animes.length > 0" class="d-flex flex-wrap justify-content-center align-items-center gap-2 mt-5">
+  <button type="button" (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-outline-secondary">
     <font style="vertical-align: inherit;">
       <font style="vertical-align: inherit;">
-        << Anterior</font>
-      </font>
+        Anterior</font>
+    </font>
   </button>
-  <button type="button" class="btn btn-outline-info" (click)="nextPage()" [disabled]="currentPage === lastPage">
+  <button type="button" class="btn btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === lastPage">
     <font style="vertical-align: inherit;">
-      <font style="vertical-align: inherit;">Siguiente >></font>
+      <font style="vertical-align: inherit;">Siguiente</font>
     </font>
   </button>
 </div>
