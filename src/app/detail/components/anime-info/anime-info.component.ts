@@ -1,5 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnimeServiceService } from 'src/app/services/anime-service.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class AnimeInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private _animeService: AnimeServiceService
   ) {
     this.name = '';
@@ -42,5 +43,9 @@ export class AnimeInfoComponent implements OnInit {
     } else {
       return [];
     }
+  }
+
+  navigate(episode: string) {
+    this.router.navigate([`/see/${this.name}/${episode}`]);
   }
 }

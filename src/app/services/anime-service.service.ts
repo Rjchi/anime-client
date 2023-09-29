@@ -29,4 +29,11 @@ export class AnimeServiceService {
   getAnimeDetails(anime: string) {
     return this.http.get(this.ApiUrl + `/details/` + anime);
   }
+
+  /**------------------------------------------------------
+   * | Obtenemos el enlace de reproducción de un episodio
+   *------------------------------------------------------*/
+  getLinkByAnime(anime: string, episode: string) {
+    return this.http.get(this.ApiUrl + `/see/` + anime + `/` + episode);
+  }
 }

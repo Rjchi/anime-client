@@ -32,8 +32,8 @@
   <div class="card border-dark m3">
     <div class="card-body flex flex-column align-items-center justify-content-center text-center">
       <h4 class="card-title">Episodios</h4>
-      <p class="card-text lead"> <span *ngFor="let episode of animeDetails.episodes"
-          class="badge bg-primary mx-1 card border-dark">{{ episode }}</span></p>
+      <p class="card-text lead cursor-pointer"> <span *ngFor="let episode of animeDetails.episodes"
+          class="badge bg-primary mx-1 card border-dark" (click)="navigate(episode)">{{ episode }}</span></p>
     </div>
   </div>
 </div>
