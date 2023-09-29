@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./detail/detail.module').then((m) => m.DetailModule),
   },
+  {
+    path: 'see',
+    loadChildren: () =>
+      import('./watch/watch.module').then((m) => m.WatchModule),
+  },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
