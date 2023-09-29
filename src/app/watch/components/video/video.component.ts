@@ -51,16 +51,25 @@ export class VideoComponent implements OnInit {
 
   getLinkAnime(name: string, episode: string) {
     try {
-      console.log(episode);
-      this._animeService.getLinkByAnime(name, episode).pipe(
-        catchError((error) => {
-          this.exist = false;
-          return []
-        })
-      ).subscribe((data) => {
-        this.link = Object.values(data);
-        this.sanitizeLink();
-      });
+      /**-------------------------------------
+       * Obtenemos el enlace de reproducción
+       * -------------------------------------*/
+      this._animeService
+        .getLinkByAnime(name, episode)
+        .pipe(
+          catchError((error) => {
+            this.exist = false;
+            return [];
+          })
+        )
+        .subscribe((data) => {
+          this.link = Object.values(data);
+          this.sanitizeLink();
+        });
+
+      /**-------------------------------------
+       * Obtenemos los detalles del anime
+       * -------------------------------------*/
       this._animeService.getAnimeDetails(name).subscribe((data) => {
         this.anime = Object.values(data);
       });
@@ -69,6 +78,10 @@ export class VideoComponent implements OnInit {
     }
   }
 
+  /**------------------------------------------------------------
+   * Esto lo hacemos para prevenir vulnerabilidades de seguridad
+   * sanitizando la url que va en el iframe
+   * ------------------------------------------------------------*/
   sanitizeLink() {
     if (this.link && this.link.length > 0) {
       this.sanitizedLink = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -78,58 +91,71 @@ export class VideoComponent implements OnInit {
     this.loading = false;
   }
 
+  /**----------------------------------
+   * Navegamos al detalle de el anime
+   * ----------------------------------*/
   navigate(anime: string) {
     this.router.navigate([`/anime/detail/${anime}`]);
   }
 
-  handleClickSig() {
+  /**-----------------------------------------------------------
+   * Eliminamos los duplicados y ordenamos de menor a mayor
+   *-----------------------------------------------------------*/
+  orderedEpisodes(animes: any) {
+    let episodes = Array.from(new Set(animes));
+    let orderedEpisodes = episodes.sort((a: any, b: any) => +a - +b);
+
+    return orderedEpisodes;
+  }
+
+  /**----------------------------------------------------------------------
+   * Navegamos a otro episodio y obtenemos nuevo enlace de reproducción
+   * ----------------------------------------------------------------------*/
+  getNewLink() {
+    this.router.navigate([`/see/${this.name}/${this.episode}`]);
+    this.getLinkAnime(this.name, this.episode);
+  }
+
+  nextPrev(operator: string) {
     if (this.currentPage && this.anime) {
-      /**-----------------------------------------------------------
-       * Eliminamos los duplicados y ordenamos de menor a mayor
-       * -----------------------------------------------------------*/
-      let episodes = Array.from(new Set(this.anime[0].episodes));
-      let orderedEpisodes = episodes.sort((a: any, b: any) => +a - +b);
+      let orderEpisodes = this.orderedEpisodes(this.anime[0].episodes);
+      let findIndex = orderEpisodes.indexOf(this.currentPage.toString());
 
-      console.log('episodes ordenados: ', orderedEpisodes);
+      if (findIndex !== -1) {
+        /**------------------------------------------
+         * Esto es para cuando clikeamos siguiente
+         * ------------------------------------------*/
+        if (operator === '+') {
+          if (findIndex !== orderEpisodes.length - 1) {
+            this.loading = true;
+            this.episode = orderEpisodes[findIndex + 1] as string;
 
-      let encontrado = orderedEpisodes.indexOf(this.currentPage.toString());
+            this.getNewLink();
+          }
+        } else {
+          /**------------------------------------------
+           * Esto es para cuando clikeamos anterior
+           * ------------------------------------------*/
+          if (findIndex !== 0) {
+            this.loading = true;
+            this.episode = orderEpisodes[findIndex - 1] as string;
 
-      if (encontrado !== -1) {
-        if (encontrado !== orderedEpisodes.length - 1) {
-          this.loading = true;
-          console.log('Siguiente: ', orderedEpisodes[encontrado + 1]);
-          this.episode = orderedEpisodes[encontrado + 1] as string;
-          this.router.navigate([`/see/${this.name}/${this.episode}`]);
-          this.getLinkAnime(this.name, this.episode);
+            this.getNewLink();
+          }
         }
       } else {
         this.exist = false;
       }
     } else {
-      console.log('No existe ese capitulo');
+      this.exist = false;
     }
   }
 
+  handleClickSig() {
+    this.nextPrev('+');
+  }
+
   handleClickAnt() {
-    if (this.currentPage && this.anime) {
-      let episodes = Array.from(new Set(this.anime[0].episodes));
-      let orderedEpisodes = episodes.sort((a: any, b: any) => +a - +b);
-
-      console.log('episodes ordenados: ', orderedEpisodes);
-
-      let encontrado = orderedEpisodes.indexOf(this.currentPage.toString());
-
-      if (encontrado !== -1) {
-        if (encontrado !== 0) {
-          console.log('Anterior: ', orderedEpisodes[encontrado - 1]);
-        } else {
-          console.log('Permanece Igual ', orderedEpisodes[encontrado]);
-        }
-      } else {
-        console.log('No existe ese capitulo');
-      }
-    } else {
-      console.log('No existe ese capitulo');
-    }
+    this.nextPrev('-');
   }
 }

@@ -9,7 +9,7 @@
     <h6 *ngIf="!exist">Recurso no Encontrado <strong>404</strong></h6>
   </div>
   <div class="card border-dark flex flex-row gap-1 p-1">
-    <button type="button" class="btn btn-outline-primary text-light" (click)="handleClickAnt()">
+    <button type="button" class="btn btn-outline-primary text-light" [disabled]="loading" (click)="handleClickAnt()">
       <font style="vertical-align: inherit;">
         <font style="vertical-align: inherit;">
           Anterior</font>
