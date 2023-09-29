@@ -33,7 +33,7 @@ export class AnimeListComponent implements OnInit {
       this._animeService.getListAnimes(page).subscribe((data) => {
         if (this.page !== 1) {
           this.listAnimes = this.listAnimes.concat(data);
-          console.log('CONCAT: ', this.listAnimes);
+          // console.log('CONCAT: ', this.listAnimes);
         } else {
           this.listAnimes = Object.values(data);
         }

@@ -1,29 +1,30 @@
 <div class="card mb-3">
-  <h3 class="card-header">Card header</h3>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+  <h3 class="card-header card border-dark">{{name}} {{episode}} Sub Español</h3>
+  <div *ngIf="sanitizedLink" class="responsive-iframe-container card border-dark">
+    <iframe *ngIf="sanitizedLink" [src]="sanitizedLink" frameborder="0"></iframe>
   </div>
-  <div *ngIf="linkAnime" class="responsive-iframe-container">
-    <iframe *ngIf="linkAnime" [src]="linkAnime" frameborder="0"></iframe>
+  <div *ngIf="!sanitizedLink" class="text-center card border-dark">
+    <app-spinner></app-spinner>
+    <h6 *ngIf="exist">Cargando...</h6>
+    <h6 *ngIf="!exist">Recurso no Encontrado <strong>404</strong></h6>
   </div>
-  <div *ngIf="!linkAnime">
-    MAL
-  </div>
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-    </p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
+  <div class="card border-dark flex flex-row gap-1 p-1">
+    <button type="button" class="btn btn-outline-primary text-light" (click)="handleClickAnt()">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">
+          Anterior</font>
+      </font>
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="navigate(name)">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">
+          Detalles</font>
+      </font>
+    </button>
+    <button type="button" [disabled]="loading" class="btn btn-outline-primary text-light" (click)="handleClickSig()">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Siguiente</font>
+      </font>
+    </button>
   </div>
 </div>
