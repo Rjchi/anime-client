@@ -2,8 +2,7 @@
 
 # Variables de entorno
 src/environments/*
-environment.ts
-!src/environments/*.ts.example
+src/environments/environment.ts
 
 
 # Compiled output
