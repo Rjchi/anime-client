@@ -1,0 +1,74 @@
+.icono {
+  padding: 25px;
+  background-color: black;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  position: relative;
+}
+
+.content-icono-uno {
+  position: absolute;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 2px;
+  background-color: white;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.content-icono-dos {
+  position: absolute;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 2px;
+  background-color: white;
+  top: 0;
+  left: 100;
+}
+
+.ojo {
+  position: absolute;
+  border-radius: 10px;
+  padding: 3px;
+  top: 8px;
+  left: 8px;
+  background-color: black;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.boca {
+  position: absolute;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  top: 30px;
+  left: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: white;
+}
+
+.leng {
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background-color: black;
+}
+
