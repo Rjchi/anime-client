@@ -1,5 +1,7 @@
+import { catchError } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AnimeServiceService } from 'src/app/services/anime-service.service';
 
 @Component({
@@ -10,6 +12,7 @@ import { AnimeServiceService } from 'src/app/services/anime-service.service';
 export class AnimeInfoComponent implements OnInit {
   private anime: any;
   public name: string;
+  public error: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,6 +20,7 @@ export class AnimeInfoComponent implements OnInit {
     private _animeService: AnimeServiceService
   ) {
     this.name = '';
+    this.error = false;
   }
 
   ngOnInit(): void {
@@ -29,7 +33,12 @@ export class AnimeInfoComponent implements OnInit {
 
   getAnimeDetail(name: string) {
     try {
-      this._animeService.getAnimeDetails(name).subscribe((data) => {
+      this._animeService.getAnimeDetails(name).pipe(
+        catchError((error) => {
+          this.error = true;
+          return [];
+        })
+      ).subscribe((data) => {
         this.anime = Object.values(data);
       });
     } catch (error) {
