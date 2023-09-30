@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="card mb-3 container-fluid">
   <h3 class="card-header card border-dark">{{name}} {{episode}} Sub Español</h3>
   <div *ngIf="sanitizedLink" class="responsive-iframe-container card border-dark">
     <iframe *ngIf="sanitizedLink" [src]="sanitizedLink" frameborder="0"></iframe>
